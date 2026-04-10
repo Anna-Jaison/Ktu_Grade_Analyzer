@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container container-top">
+    <div class="card card-large">
+        <h1 style="color: var(--text-dark); margin: 0 0 0.25rem 0; font-size: 2.4rem; border-bottom: 2px solid var(--primary-blue); padding-bottom: 0.5rem;">{{ department }} - Semester {{ semester }}</h1>
+
+        {% for sub in subjects %}
+        <div style="padding: 0.75rem 0; border-bottom: 1px solid var(--border-color);">
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem;">
+            <div>
+              <strong>{{ sub.code }}</strong> - <span style="font-size: 0.95rem;">{{ sub.name }}</span>
+            </div>
+            <span style="color: var(--text-muted); font-size: 0.9rem;">{{ sub.credits }} credits | {% if sub.is_lab %}Lab{% else %}Theory{% endif %}</span>
+          </div>
+
+          <div style="display: flex; gap: 2rem; margin: 0.5rem 0 0.75rem 0; flex-wrap: wrap; font-size: 0.9rem;">
+            <div>
+              <span style="color: var(--text-muted);">Internal:</span> <strong>{{ sub.internal }}</strong>
+            </div>
+            <div>
+              <span style="color: var(--text-muted);">Pass Req:</span> <strong style="color: {% if sub.pass_required == 'Not Possible' %}#d63031{% else %}#27ae60{% endif %}; background: {% if sub.pass_required == 'Not Possible' %}rgba(214, 48, 49, 0.1){% else %}rgba(39, 174, 96, 0.15){% endif %}; padding: 0.2rem 0.5rem; border-radius: 0.3rem;">{{ sub.pass_required }}</strong>
+            </div>
+          </div>
+
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(60px, 1fr)); gap: 0.4rem;">
+            {% for g, val in sub.grade_requirements.items %}
+            <div style="background: var(--card-bg); padding: 0.4rem; border-radius: 0.25rem; text-align: center; font-size: 0.85rem; border: 1px solid var(--border-color);">
+              <div><strong>{{ g }}</strong></div>
+              <div style="color: var(--primary-blue); font-weight: bold;">{{ val }}</div>
+            </div>
+            {% endfor %}
+          </div>
+        </div>
+        {% endfor %}
+        
+        <button type="button" onclick="window.location.href='/'" style="width: 100%; padding: 0.6rem; margin-top: 1rem; background: var(--primary-blue); color: var(--card-bg); border: none; border-radius: 0.4rem; cursor: pointer; font-size: 0.95rem;">Go Back</button>
+    </div>
+</div>
+{% endblock %}

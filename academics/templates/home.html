@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container">
+    <div class="card">
+      <h2>KTU Grade Analyzer</h2>
+
+      <form method="post" action="/subjects/">
+        {% csrf_token %}
+
+        <select name="department">
+          {% for d in departments %}
+            <option value="{{ d.id }}">{{ d.name }}</option>
+          {% endfor %}
+        </select>
+
+        <select name="scheme">
+          {% for s in schemes %}
+            <option value="{{ s.id }}">{{ s.year }}</option>
+          {% endfor %}
+        </select>
+
+        <input type="number" name="semester" placeholder="Enter Semester (1-8)">
+
+        <button type="submit">Continue →</button>
+      </form>
+    </div>
+</div>
+{% endblock %}

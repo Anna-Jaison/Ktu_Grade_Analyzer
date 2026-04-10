@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container container-top">
+    <div class="card card-large">
+        <h2 class="text-left">Enter Internal Marks</h2>
+        <p style="color: var(--text-muted); margin-bottom: 1.5rem;">Enter internal marks for each subject below</p>
+
+        <form method="post" action="/result/">
+          {% csrf_token %}
+          <input type="hidden" name="semester" value="{{ semester }}">
+          <input type="hidden" name="department" value="{{ department }}">
+
+          {% for sub in subjects %}
+            <div style="display: flex; align-items: center; gap: 1rem; padding: 0.75rem 0; border-bottom: 1px solid var(--border-color);">
+              <div style="flex: 1;">
+                <strong style="font-size: 0.95rem;">{{ sub.code }}</strong> - <span style="font-size: 0.9rem;">{{ sub.name }}</span>
+                <br>
+                <small style="color: var(--text-muted); font-size: 0.85rem;">
+                  {% if sub.is_lab %}
+                    Enter Internal Marks out of 75
+                  {% else %}
+                    Enter Internal Marks out of 50
+                  {% endif %}
+                </small>
+              </div>
+              
+              <input 
+                type="number" 
+                name="internal_{{ sub.id }}" 
+                placeholder="{% if sub.is_lab %}0-75{% else %}0-50{% endif %}"
+                style="width: 80px; padding: 0.4rem; font-size: 0.95rem;"
+                min="0"
+                max="{% if sub.is_lab %}75{% else %}50{% endif %}"
+                required
+              >
+            </div>
+          {% endfor %}
+
+          <button type="submit" style="width: 100%; margin-top: 1.5rem; padding: 0.75rem; font-size: 1rem;">Calculate Results</button>
+        </form>
+    </div>
+</div>
+
+{% endblock %}
