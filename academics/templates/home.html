@@ -15,6 +15,13 @@
           {% endfor %}
         </select>
 
+        <select name="scheme" required>
+          <option value="">-- Select Scheme --</option>
+          {% for s in schemes %}
+            <option value="{{ s.year }}">{{ s.year }}</option>
+          {% endfor %}
+        </select>
+
         <select name="semester" required>
           <option value="">-- Select Semester --</option>
           {% for i in "12345678" %}

@@ -7,11 +7,12 @@
         <p style="color: var(--text-muted); margin-bottom: 1.5rem;">Enter internal marks for each subject below</p>
 
         {% if subjects %}
-        <h3 style="margin-bottom: 1rem;">{{ selected_department }} - Semester {{ selected_semester }}</h3>
+        <h3 style="margin-bottom: 1rem;">{{ selected_department }} - Scheme {{ selected_scheme }} - Semester {{ selected_semester }}</h3>
         <form method="post" action="/result/">
           {% csrf_token %}
           <input type="hidden" name="semester" value="{{ selected_semester }}">
           <input type="hidden" name="department" value="{{ selected_department }}">
+          <input type="hidden" name="scheme" value="{{ selected_scheme }}">
 
           {% for sub in subjects %}
             <div style="display: flex; align-items: center; gap: 1rem; padding: 0.75rem 0; border-bottom: 1px solid var(--border-color);">

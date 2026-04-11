@@ -55,10 +55,12 @@ def subjects_view(request):
     subjects = []
     department = None
     semester = None
+    scheme = None
 
     if request.method == "POST":
         department = request.POST.get("department")
         semester = request.POST.get("semester")
+        scheme = request.POST.get("scheme")
 
         if department and semester:
             file_path = os.path.join(os.path.dirname(__file__), "../subjects.json")
@@ -71,12 +73,14 @@ def subjects_view(request):
     return render(request, "subjects.html", {
         "subjects": subjects,
         "selected_department": department,
-        "selected_semester": semester
+        "selected_semester": semester,
+        "selected_scheme": scheme
     })
 def result_view(request):
     if request.method == "POST":
         department = request.POST.get("department")
         semester = request.POST.get("semester")
+        scheme = request.POST.get("scheme")
 
         file_path = os.path.join(os.path.dirname(__file__), "../subjects.json")
 
