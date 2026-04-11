@@ -25,7 +25,10 @@ SECRET_KEY = "django-insecure-sir&%-6l8%p@d#z*&q#-c1^97rf9+3*%ntib+wl*rr+txw0umr
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+
+ALLOWED_HOSTS = [
+    "ktu-grade-analyzer-1g2ncefk1-annajaisons-projects.vercel.app","*"
+]
 
 
 # Application definition
