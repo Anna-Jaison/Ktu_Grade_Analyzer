@@ -64,7 +64,7 @@ def subjects_view(request):
         with open(file_path, "r") as f:
             data = json.load(f)
 
-        subjects = data.get(department, {}).get(semester, [])
+        subjects = [s for s in data if s.get('dept') == department and str(s.get('sem')) == semester]
 
     return render(request, "subjects.html", {
         "subjects": subjects,
@@ -80,7 +80,7 @@ def result_view(request):
         with open(file_path, "r") as f:
             data = json.load(f)
 
-        subjects = data.get(department, {}).get(semester, [])
+        subjects = [s for s in data if s.get('dept') == department and str(s.get('sem')) == semester]
 
         subjects_data = []
 
@@ -91,13 +91,13 @@ def result_view(request):
                 "code": sub["code"],
                 "name": sub["name"],
                 "credits": sub["credits"],
-                "is_lab": sub.get("is_lab", False),
+                "is_lab": sub.get("lab", False),
                 "internal": internal,
                 "pass_required": required_external_for_total(
-                    internal, PASS_MARK_TOTAL, sub.get("is_lab", False)
+                    internal, PASS_MARK_TOTAL, sub.get("lab", False)
                 ),
                 "grade_requirements": get_required_externals_by_grade(
-                    internal, sub.get("is_lab", False)
+                    internal, sub.get("lab", False)
                 )
             }
 
