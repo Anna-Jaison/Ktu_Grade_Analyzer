@@ -4,12 +4,42 @@
 <div class="container container-top">
     <div class="card card-large">
         <h2 class="text-left">Enter Internal Marks</h2>
-        <p style="color: var(--text-muted); margin-bottom: 1.5rem;">Enter internal marks for each subject below</p>
+        <p style="color: var(--text-muted); margin-bottom: 1.5rem;">Select your department and semester to view subjects</p>
 
+        <!-- Department and Semester Selection Form -->
+        <form method="post" style="margin-bottom: 2rem;">
+          {% csrf_token %}
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 1rem;">
+            <div>
+              <label for="department" style="display: block; margin-bottom: 0.5rem; font-weight: 500;">Department</label>
+              <select name="department" id="department" style="width: 100%; padding: 0.5rem; font-size: 1rem;" required>
+                <option value="">-- Select Department --</option>
+                {% for dept in departments %}
+                  <option value="{{ dept }}" {% if dept == selected_department %}selected{% endif %}>{{ dept }}</option>
+                {% endfor %}
+              </select>
+            </div>
+            
+            <div>
+              <label for="semester" style="display: block; margin-bottom: 0.5rem; font-weight: 500;">Semester</label>
+              <select name="semester" id="semester" style="width: 100%; padding: 0.5rem; font-size: 1rem;" required>
+                <option value="">-- Select Semester --</option>
+                {% for sem in semesters %}
+                  <option value="{{ sem }}" {% if sem|stringformat:"s" == selected_semester %}selected{% endif %}>Semester {{ sem }}</option>
+                {% endfor %}
+              </select>
+            </div>
+          </div>
+          <button type="submit" style="width: 100%; padding: 0.75rem; font-size: 1rem; margin-bottom: 2rem;">Search Subjects</button>
+        </form>
+
+        <!-- Subjects List (shown after selection) -->
+        {% if subjects %}
+        <h3 style="margin-bottom: 1rem; margin-top: 2rem;">Subjects for {{ selected_department }} - Semester {{ selected_semester }}</h3>
         <form method="post" action="/result/">
           {% csrf_token %}
-          <input type="hidden" name="semester" value="{{ semester }}">
-          <input type="hidden" name="department" value="{{ department }}">
+          <input type="hidden" name="semester" value="{{ selected_semester }}">
+          <input type="hidden" name="department" value="{{ selected_department }}">
 
           {% for sub in subjects %}
             <div style="display: flex; align-items: center; gap: 1rem; padding: 0.75rem 0; border-bottom: 1px solid var(--border-color);">
@@ -17,7 +47,7 @@
                 <strong style="font-size: 0.95rem;">{{ sub.code }}</strong> - <span style="font-size: 0.9rem;">{{ sub.name }}</span>
                 <br>
                 <small style="color: var(--text-muted); font-size: 0.85rem;">
-                  {% if sub.is_lab %}
+                  {% if sub.lab %}
                     Enter Internal Marks out of 75
                   {% else %}
                     Enter Internal Marks out of 50
@@ -28,10 +58,10 @@
               <input 
                 type="number" 
                 name="internal_{{ sub.code }}" 
-                placeholder="{% if sub.is_lab %}0-75{% else %}0-50{% endif %}"
+                placeholder="{% if sub.lab %}0-75{% else %}0-50{% endif %}"
                 style="width: 80px; padding: 0.4rem; font-size: 0.95rem;"
                 min="0"
-                max="{% if sub.is_lab %}75{% else %}50{% endif %}"
+                max="{% if sub.lab %}75{% else %}50{% endif %}"
                 required
               >
             </div>
@@ -39,6 +69,9 @@
 
           <button type="submit" style="width: 100%; margin-top: 1.5rem; padding: 0.75rem; font-size: 1rem;">Calculate Results</button>
         </form>
+        {% elif selected_department %}
+        <p style="color: var(--text-muted); text-align: center; padding: 2rem 0;">No subjects found for {{ selected_department }} - Semester {{ selected_semester }}</p>
+        {% endif %}
     </div>
 </div>
 

@@ -53,7 +53,10 @@ from django.shortcuts import render
 
 def subjects_view(request):
     subjects = []
-    departments = ["CSE", "ECE", "EEE"]  # static list
+    department = None
+    semester = None
+    departments = ["CSE", "ECE", "EEE"]
+    semesters = list(range(1, 9))  # 1-8 semesters
 
     if request.method == "POST":
         department = request.POST.get("department")
@@ -68,7 +71,10 @@ def subjects_view(request):
 
     return render(request, "subjects.html", {
         "subjects": subjects,
-        "departments": departments
+        "departments": departments,
+        "semesters": semesters,
+        "selected_department": department,
+        "selected_semester": semester
     })
 def result_view(request):
     if request.method == "POST":
