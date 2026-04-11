@@ -55,24 +55,21 @@ def subjects_view(request):
     subjects = []
     department = None
     semester = None
-    departments = ["CSE", "ECE", "EEE"]
-    semesters = list(range(1, 9))  # 1-8 semesters
 
     if request.method == "POST":
         department = request.POST.get("department")
         semester = request.POST.get("semester")
 
-        file_path = os.path.join(os.path.dirname(__file__), "../subjects.json")
+        if department and semester:
+            file_path = os.path.join(os.path.dirname(__file__), "../subjects.json")
 
-        with open(file_path, "r") as f:
-            data = json.load(f)
+            with open(file_path, "r") as f:
+                data = json.load(f)
 
-        subjects = [s for s in data if s.get('dept') == department and str(s.get('sem')) == semester]
+            subjects = [s for s in data if s.get('dept') == department and str(s.get('sem')) == semester]
 
     return render(request, "subjects.html", {
         "subjects": subjects,
-        "departments": departments,
-        "semesters": semesters,
         "selected_department": department,
         "selected_semester": semester
     })
