@@ -1,4 +1,4 @@
-asgiref==3.11.1
+﻿asgiref==3.11.1
 beautifulsoup4==4.14.3
 certifi==2026.2.25
 cffi==2.0.0
@@ -20,6 +20,6 @@ pypdf2==3.0.0
 python-dotenv==1.0.0
 pytz==2024.1
 requests==2.31.0
-sqlparse==0.4.4
+sqlparse==0.5.0
 urllib3==2.0.0
 whitenoise==6.6.0
