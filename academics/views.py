@@ -4,11 +4,22 @@ from .utils import *
 from django.http import HttpResponse, JsonResponse
 from django.views.decorators.csrf import csrf_exempt
 import json
-
+from extract_subject import DATA
 def home(request):
+    departments = [
+        {"id": 1, "name": "CSE"},
+        {"id": 2, "name": "ECE"},
+        {"id": 3, "name": "EEE"},
+    ]
+
+    schemes = [
+        {"id": 1, "year": 2019},
+        {"id": 2, "year": 2024},
+    ]
+
     return render(request, "home.html", {
-        "departments": Department.objects.all(),
-        "schemes": Scheme.objects.all()
+        "departments": departments,
+        "schemes": schemes
     })
 
 @csrf_exempt
@@ -50,6 +61,11 @@ def subjects_view(request):
             department=dept,
             semester=semester
         ))
+        subjects = [
+    s for s in DATA
+    if s.get("dept", "CSE") == dept.name
+    and s["sem"] == int(request.POST.get("semester"))
+]
 
         return render(request, "subjects.html", {
             "subjects": subjects,
