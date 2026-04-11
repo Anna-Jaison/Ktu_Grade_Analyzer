@@ -47,76 +47,66 @@ def save_elective(request):
 
         return JsonResponse({"message": "Added"})
 
+import json
+import os
+from django.shortcuts import render
+
 def subjects_view(request):
+    subjects = []
+    departments = ["CSE", "ECE", "EEE"]  # static list
+
     if request.method == "POST":
-        dept = Department.objects.get(id=request.POST.get("department"))
-        scheme = Scheme.objects.get(id=request.POST.get("scheme"))
-        semester = Semester.objects.get(
-            number=request.POST.get("semester"),
-            scheme=scheme
-        )
+        department = request.POST.get("department")
+        semester = request.POST.get("semester")
 
-        # ✅ normal subjects + electives (all compulsory)
-        subjects = list(Subject.objects.filter(
-            department=dept,
-            semester=semester
-        ))
-        subjects = [
-    s for s in DATA
-    if s.get("dept", "CSE") == dept.name
-    and s["sem"] == int(request.POST.get("semester"))
-]
+        file_path = os.path.join(os.path.dirname(__file__), "../subjects.json")
 
-        return render(request, "subjects.html", {
-            "subjects": subjects,
-            "semester": semester.id,
-            "department": dept.id,
-            "dept_name": dept.name
-        })
+        with open(file_path, "r") as f:
+            data = json.load(f)
 
-    return HttpResponse("Invalid request")
+        subjects = data.get(department, {}).get(semester, [])
+
+    return render(request, "subjects.html", {
+        "subjects": subjects,
+        "departments": departments
+    })
 def result_view(request):
     if request.method == "POST":
-        semester_id = request.POST.get("semester")
-        department_id = request.POST.get("department")
+        department = request.POST.get("department")
+        semester = request.POST.get("semester")
 
-        # ✅ fetch semester and department objects
-        semester = Semester.objects.get(id=semester_id)
-        department = Department.objects.get(id=department_id)
+        file_path = os.path.join(os.path.dirname(__file__), "../subjects.json")
 
-        # ✅ subjects for this department and semester only
-        subjects = list(Subject.objects.filter(
-            department=department,
-            semester=semester
-        ))
+        with open(file_path, "r") as f:
+            data = json.load(f)
+
+        subjects = data.get(department, {}).get(semester, [])
 
         subjects_data = []
-        total_credits = 0
 
         for sub in subjects:
-            internal = float(request.POST.get(f"internal_{sub.id}", 0) or 0)
-            
+            internal = float(request.POST.get(f"internal_{sub['code']}", 0) or 0)
+
             sub_data = {
-                "code": sub.code,
-                "name": sub.name,
-                "credits": sub.credits,
-                "is_lab": sub.is_lab,
+                "code": sub["code"],
+                "name": sub["name"],
+                "credits": sub["credits"],
+                "is_lab": sub.get("is_lab", False),
                 "internal": internal,
                 "pass_required": required_external_for_total(
-                    internal, PASS_MARK_TOTAL, sub.is_lab
+                    internal, PASS_MARK_TOTAL, sub.get("is_lab", False)
                 ),
                 "grade_requirements": get_required_externals_by_grade(
-                    internal, sub.is_lab
+                    internal, sub.get("is_lab", False)
                 )
             }
-            
+
             subjects_data.append(sub_data)
-            total_credits += sub.credits
 
         return render(request, "result.html", {
             "subjects": subjects_data,
-            "department": department.name,
-            "semester": semester.number
+            "department": department,
+            "semester": semester
         })
 
     return HttpResponse("Invalid request")
