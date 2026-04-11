@@ -13,7 +13,7 @@ packaging==26.0
 pdfplumber==0.11.0 
 Pillow==10.0.1
 pip-tools==7.4.0
-psycopg2-binary==2.9.13
+psycopg2-binary==2.9.9
 pypdf2==3.0.0
 python-dotenv==1.0.0
 pytz==2024.1
