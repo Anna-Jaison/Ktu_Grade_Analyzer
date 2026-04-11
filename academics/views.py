@@ -68,7 +68,7 @@ def subjects_view(request):
             with open(file_path, "r") as f:
                 data = json.load(f)
 
-            subjects = [s for s in data if s.get('dept') == department and str(s.get('sem')) == semester]
+            subjects = [s for s in data if s.get('dept') == department and str(s.get('sem')) == semester and s.get('scheme', 2019) == int(scheme)]
 
     return render(request, "subjects.html", {
         "subjects": subjects,
@@ -87,7 +87,7 @@ def result_view(request):
         with open(file_path, "r") as f:
             data = json.load(f)
 
-        subjects = [s for s in data if s.get('dept') == department and str(s.get('sem')) == semester]
+        subjects = [s for s in data if s.get('dept') == department and str(s.get('sem')) == semester and s.get('scheme', 2019) == int(scheme)]
 
         subjects_data = []
 
