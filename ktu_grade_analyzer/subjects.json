@@ -1,0 +1,197 @@
+{
+  "CSE": {
+    "1": [
+      "Mathematics - I",
+      "Physics",
+      "Chemistry",
+      "English",
+      "Programming in C",
+      "Basic Civil Engineering"
+    ],
+    "2": [
+      "Mathematics - II",
+      "Data Structures",
+      "Digital Logic Design",
+      "Database Management Systems",
+      "Web Engineering",
+      "Discrete Mathematics"
+    ],
+    "3": [
+      "Computer Architecture",
+      "Operating Systems",
+      "Software Engineering",
+      "Database Design",
+      "Computer Networks",
+      "Algorithms"
+    ],
+    "4": [
+      "Compiler Design",
+      "Artificial Intelligence",
+      "Web Development",
+      "Security",
+      "Cloud Computing",
+      "Distributed Systems"
+    ],
+    "5": [
+      "Machine Learning",
+      "Big Data Analytics",
+      "Cybersecurity",
+      "IoT",
+      "Advanced Networks",
+      "Parallel Computing"
+    ],
+    "6": [
+      "Deep Learning",
+      "Natural Language Processing",
+      "Data Science",
+      "Blockchain",
+      "Edge Computing",
+      "Advanced Algorithms"
+    ],
+    "7": [
+      "Computer Vision",
+      "Reinforcement Learning",
+      "Cryptography",
+      "Mobile Computing",
+      "Advanced Security",
+      "Software Testing"
+    ],
+    "8": [
+      "Project Work",
+      "Advanced Topics in CSE",
+      "Seminar",
+      "Internship",
+      "Final Year Project"
+    ]
+  },
+  "ECE": {
+    "1": [
+      "Mathematics - I",
+      "Physics",
+      "Chemistry",
+      "English",
+      "Basic Electronics",
+      "Basic Civil Engineering"
+    ],
+    "2": [
+      "Mathematics - II",
+      "Network Theory",
+      "Electronic Devices and Circuits",
+      "Digital Logic Design",
+      "Electromagnetic Fields",
+      "Discrete Mathematics"
+    ],
+    "3": [
+      "Analog Circuits",
+      "Digital System Design",
+      "Signals and Systems",
+      "Control Systems",
+      "Communication Systems",
+      "Microprocessors"
+    ],
+    "4": [
+      "Microcontrollers",
+      "Digital Signal Processing",
+      "VLSI Design",
+      "Power Electronics",
+      "Electromagnetic Waves",
+      "Power Systems"
+    ],
+    "5": [
+      "Embedded Systems",
+      "Advanced Communication",
+      "FPGA Design",
+      "Wireless Communications",
+      "Antenna Design",
+      "Advanced Control"
+    ],
+    "6": [
+      "IoT Systems",
+      "5G Technology",
+      "Photonics",
+      "RF Engineering",
+      "Satellite Communications",
+      "Advanced VLSI"
+    ],
+    "7": [
+      "Advanced Signal Processing",
+      "Optical Communications",
+      "Quantum Computing",
+      "Advanced Power Systems",
+      "Radar Systems",
+      "Aerospace Electronics"
+    ],
+    "8": [
+      "Project Work",
+      "Advanced Topics in ECE",
+      "Seminar",
+      "Internship",
+      "Final Year Project"
+    ]
+  },
+  "EEE": {
+    "1": [
+      "Mathematics - I",
+      "Physics",
+      "Chemistry",
+      "English",
+      "Electrical Engineering Fundamentals",
+      "Basic Civil Engineering"
+    ],
+    "2": [
+      "Mathematics - II",
+      "Circuit Theory",
+      "Electromagnetic Theory",
+      "Electrical Machines - I",
+      "Power Systems - I",
+      "Discrete Mathematics"
+    ],
+    "3": [
+      "Electrical Machines - II",
+      "Power Systems - II",
+      "Power Electronics",
+      "Control Systems",
+      "Measurements and Instrumentation",
+      "Electrical Installation"
+    ],
+    "4": [
+      "High Voltage Engineering",
+      "Power Generation",
+      "Power Transmission",
+      "Power Distribution",
+      "Protection Systems",
+      "Advanced Control"
+    ],
+    "5": [
+      "Smart Grid Technology",
+      "Renewable Energy Systems",
+      "Energy Storage",
+      "Industrial Drives",
+      "Power Quality",
+      "Advanced Power Electronics"
+    ],
+    "6": [
+      "Microgrid Systems",
+      "EV Charging Systems",
+      "Power System Stability",
+      "Advanced Machines",
+      "Power System Economics",
+      "Distributed Generation"
+    ],
+    "7": [
+      "Flexible AC Transmission",
+      "HVDC Systems",
+      "Energy Management Systems",
+      "Advanced Protection",
+      "Power System Planning",
+      "Electrical Safety"
+    ],
+    "8": [
+      "Project Work",
+      "Advanced Topics in EEE",
+      "Seminar",
+      "Internship",
+      "Final Year Project"
+    ]
+  }
+}
