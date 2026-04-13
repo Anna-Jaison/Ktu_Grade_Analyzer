@@ -1,36 +1,175 @@
 {% extends 'base.html' %}
+{% load static %}
 
 {% block content %}
+<style>
+    .hero-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 4rem;
+        align-items: center;
+        min-height: calc(100vh - 4rem);
+        position: relative;
+    }
+
+    /* Page-specific decorative dotted paths */
+    .bg-dots {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        pointer-events: none;
+        z-index: -1;
+        opacity: 0.4;
+    }
+
+    .hero-content {
+        max-width: 500px;
+        position: relative;
+        z-index: 1;
+    }
+
+    .hero-image-container {
+        position: relative;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        z-index: 1;
+    }
+
+    .hero-image {
+        width: 100%;
+        max-width: 500px;
+        height: auto;
+        border-radius: var(--radius-lg);
+        filter: drop-shadow(0 20px 30px rgba(0,0,0,0.05));
+    }
+
+    .hero-badge {
+        display: inline-block;
+        background: var(--primary-light);
+        color: var(--primary);
+        padding: 0.5rem 1.25rem;
+        border-radius: 999px;
+        font-weight: 700;
+        font-size: 0.875rem;
+        margin-bottom: 1.5rem;
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+    }
+
+    .hero-title {
+        font-size: clamp(2.5rem, 5vw, 4rem);
+        line-height: 1.1;
+        margin-bottom: 1.5rem;
+        color: var(--text-main);
+    }
+
+    .text-gradient {
+        background: linear-gradient(135deg, var(--primary), var(--secondary));
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+    }
+
+    .hero-description {
+        font-size: 1.125rem;
+        color: var(--text-dim);
+        margin-bottom: 2.5rem;
+    }
+
+    .selection-card {
+        padding: 2.5rem;
+        background: white;
+        border-radius: var(--radius-lg);
+        border: 1px solid var(--border-thin);
+        box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+    }
+
+    @media (max-width: 1024px) {
+        .hero-grid {
+            grid-template-columns: 1fr;
+            gap: 3rem;
+            text-align: center;
+            padding-top: 4rem;
+        }
+        .hero-content {
+            max-width: 100%;
+            margin: 0 auto;
+        }
+        .hero-image {
+            max-width: 400px;
+        }
+    }
+</style>
+
 <div class="container">
-    <div class="card">
-      <h2>KTU Grade Analyzer</h2>
+    <div class="hero-grid">
+        <!-- Page-specific SVG Decorative Dotted Lines -->
+        <svg class="bg-dots" viewBox="0 0 1000 1000" xmlns="http://www.w3.org/2000/svg">
+            <path d="M-100,500 Q200,300 500,500 T1100,500" fill="none" stroke="var(--primary)" stroke-width="2" stroke-dasharray="8 12" />
+            <path d="M-100,600 Q300,800 600,600 T1100,600" fill="none" stroke="var(--secondary)" stroke-width="1" stroke-dasharray="4 8" />
+            <path d="M400,100 Q600,300 800,100" fill="none" stroke="var(--primary)" stroke-width="1" stroke-dasharray="2 4" opacity="0.2" />
+            <circle cx="900" cy="800" r="150" fill="none" stroke="rgba(79, 70, 229, 0.05)" stroke-width="1" stroke-dasharray="12 12" />
+        </svg>
 
-      <form method="post" action="/subjects/">
-        {% csrf_token %}
+        <div class="hero-content animate-fade-in">
+            <span class="hero-badge">KTU Grade Analysis</span>
+            <h1 class="hero-title">Predict Your <span class="text-gradient">KTU Success.</span></h1>
+            <p class="hero-description">Decode your grades. Design your success. </p>
+            
+            <div class="selection-card">
+                <form method="post" action="/subjects/">
+                    {% csrf_token %}
+                    
+                    <div class="input-group">
+                        <label class="input-label">Department</label>
+                        <select name="department" required>
+                            <option value="">Select Department</option>
+                            {% for d in departments %}
+                                <option value="{{ d.name }}">{{ d.name }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
 
-        <select name="department" required>
-          <option value="">-- Select Department --</option>
-          {% for d in departments %}
-            <option value="{{ d.name }}">{{ d.name }}</option>
-          {% endfor %}
-        </select>
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+                        <div class="input-group">
+                            <label class="input-label">Scheme</label>
+                            <select name="scheme" required>
+                                <option value="">Select Scheme</option>
+                                {% for s in schemes %}
+                                    <option value="{{ s.year }}">{{ s.year }}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
 
-        <select name="scheme" required>
-          <option value="">-- Select Scheme --</option>
-          {% for s in schemes %}
-            <option value="{{ s.year }}">{{ s.year }}</option>
-          {% endfor %}
-        </select>
+                        <div class="input-group">
+                            <label class="input-label">Semester</label>
+                            <select name="semester" required>
+                                <option value="">Select Semester</option>
+                                {% for i in "12345678" %}
+                                    <option value="{{ i }}">Semester {{ i }}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                    </div>
 
-        <select name="semester" required>
-          <option value="">-- Select Semester --</option>
-          {% for i in "12345678" %}
-            <option value="{{ i }}">Semester {{ i }}</option>
-          {% endfor %}
-        </select>
+                    <button type="submit" class="btn-primary" style="width: 100%; margin-top: 1rem;">
+                        Analyze Results
+                        <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M12.5 5L17.5 10M17.5 10L12.5 15M17.5 10H2.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </button>
+                </form>
+            </div>
+        </div>
 
-        <button type="submit">Continue →</button>
-      </form>
+        <div class="hero-image-container animate-fade-in" style="animation-delay: 0.2s;">
+            <img src="{% static 'hero_illustration.jpg' %}" 
+                 alt="Student Analysis Illustration" 
+                 class="hero-image"
+                 style="display: block; width: 100%; height: auto; min-height: 200px; object-fit: contain;">
+        </div>
     </div>
 </div>
 {% endblock %}
