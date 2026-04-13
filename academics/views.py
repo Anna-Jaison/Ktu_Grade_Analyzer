@@ -101,10 +101,8 @@ def result_view(request):
 
             pass_total = get_pass_mark_total(scheme)
 
-            limits = get_mark_limits(sub.get("lab", False), scheme)
-
-            max_internal = limits["max_internal"]
-            max_external = limits["max_external"]
+            max_internal = sub.get("max_internal")
+            max_external = sub.get("max_external")
 
             required = required_external_for_total(
                 internal,
