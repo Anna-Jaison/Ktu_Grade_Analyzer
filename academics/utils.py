@@ -41,16 +41,16 @@ def required_external_for_total(internal, target_total, max_external, scheme=201
 
     ese_min = round(max_external * (0.40 if scheme == 2024 else 0.35), 2)
 
-    # ✅ If already enough internal
     if required <= 0:
-        return ese_min
+        return ese_min, "ese_min"
 
-    # ✅ If impossible
     if required > max_external:
-        return "Not Possible"
+        return "Not Possible", "impossible"
 
-    # ✅ Final required
-    return max(ese_min, round(required, 2))
+    if required < ese_min:
+        return ese_min, "ese_override"
+
+    return round(required, 2), "normal"
 
 
 def get_required_externals_by_grade(internal, max_external, scheme=2019):
@@ -58,10 +58,14 @@ def get_required_externals_by_grade(internal, max_external, scheme=2019):
     grade_map = get_grade_map(scheme)
 
     for grade, (min_total, _) in grade_map.items():
-        required = required_external_for_total(
+        value, status = required_external_for_total(
             internal, min_total, max_external, scheme
         )
-        result[grade] = required
+
+        result[grade] = {
+            "marks": value,
+            "status": status
+        }
 
     return result
 

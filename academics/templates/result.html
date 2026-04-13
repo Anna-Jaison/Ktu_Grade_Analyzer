@@ -225,7 +225,14 @@
                     {% for g, val in sub.grade_requirements.items %}
                     <div class="grade-box">
                         <div class="grade-letter">{{ g }}</div>
-                        <div class="grade-mark">{{ val }}</div>
+                        <div class="grade-mark">
+    {{ val.marks }}
+    {% if val.status == "ese_override" %}
+        <span style="font-size: 0.7rem; color: #f59e0b;">(min ESE)</span>
+    {% elif val.status == "impossible" %}
+        <span style="font-size: 0.7rem; color: #ef4444;"></span>
+    {% endif %}
+</div>
                     </div>
                     {% endfor %}
                 </div>

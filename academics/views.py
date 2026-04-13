@@ -104,12 +104,12 @@ def result_view(request):
             max_internal = sub.get("max_internal")
             max_external = sub.get("max_external")
 
-            required = required_external_for_total(
-                internal,
-                pass_total,
-                max_external,
-                scheme
-            )
+            required_value, required_status = required_external_for_total(
+    internal,
+    pass_total,
+    max_external,
+    scheme
+)
 
             sub_data = {
                 "code": sub["code"],
@@ -118,8 +118,9 @@ def result_view(request):
                 "internal": internal,
                 "max_internal": max_internal,
                 "max_external": max_external,
-                "pass_required": required,
-                "can_pass": required != "Not Possible" and required <= max_external,
+                "pass_required": required_value,
+                "pass_status": required_status,
+                "can_pass": required_value != "Not Possible" and required_value <= max_external,
                 "ese_min": round(max_external * (0.40 if scheme == 2024 else 0.35), 2),
 
                 "grade_requirements": get_required_externals_by_grade(
