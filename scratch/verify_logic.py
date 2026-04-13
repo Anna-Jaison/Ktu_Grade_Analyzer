@@ -11,27 +11,31 @@ django.setup()
 
 from academics.utils import required_external_for_total, is_pass
 
-print("--- REVISED 2019 Scheme Theory ---")
-# 2019 Theory: Max 150 (50+100)
-# Pass: Total 75, ESE 40
-print(f"Internal 35, Target 75: {required_external_for_total(35, 75, is_lab=False, scheme=2019)} (Expected: 40)")
-print(f"Internal 40, Target 75: {required_external_for_total(40, 75, is_lab=False, scheme=2019)} (Expected: 40 - ESE min 40)")
-print(f"Internal 0, Target 75: {required_external_for_total(0, 75, is_lab=False, scheme=2019)} (Expected: 75)")
+print("--- 2024 DYNAMIC Scheme subjects ---")
 
-print("\n--- REVISED 2019 Scheme Lab ---")
-# 2019 Lab: Max 150 (75+75)
-# Pass: Total 75, ESE 30 (40% of 75)
-print(f"Internal 40, Target 75: {required_external_for_total(40, 75, is_lab=True, scheme=2019)} (Expected: 35)")
-print(f"Internal 50, Target 75: {required_external_for_total(50, 75, is_lab=True, scheme=2019)} (Expected: 30 - ESE min 30)")
+# Microcontrollers (60/40)
+# Pass: Total 50, ESE 16 (40% of 40)
+print(f"Microcontrollers (60/40): Int 30, Target 50: {required_external_for_total(30, 50, 40, scheme=2024)} (Expected: 20)")
+print(f"Microcontrollers (60/40): Int 40, Target 50: {required_external_for_total(40, 50, 40, scheme=2024)} (Expected: 16 - ESE min 16)")
 
-print("\n--- REVISED 2024 Scheme ---")
-# 2024: Max 100 (40+60)
+# Life Skills (100/0)
+# Pass: Total 50, ESE 0
+print(f"Life Skills (100/0): Int 40, Target 50: {required_external_for_total(40, 50, 0, scheme=2024)} (Expected: 10)")
+print(f"Life Skills (100/0): Int 60, Target 50: {required_external_for_total(60, 50, 0, scheme=2024)} (Expected: 0)")
+
+# Compiler Design (40/60)
 # Pass: Total 50, ESE 24
-print(f"Internal 26, Target 50: {required_external_for_total(26, 50, scheme=2024)} (Expected: 24)")
-print(f"Internal 30, Target 50: {required_external_for_total(30, 50, scheme=2024)} (Expected: 24)")
+print(f"Compiler Design (40/60): Int 26, Target 50: {required_external_for_total(26, 50, 60, scheme=2024)} (Expected: 24)")
 
 print("\n--- is_pass check ---")
-print(f"2019: Int 35, Ext 40 -> {is_pass(35, 40, 2019)} (Expected: True)")
-print(f"2019: Int 40, Ext 35 -> {is_pass(40, 35, 2019)} (Expected: False - ESE min 40)")
-print(f"2024: Int 26, Ext 24 -> {is_pass(26, 24, 2024)} (Expected: True)")
-print(f"2024: Int 30, Ext 20 -> {is_pass(30, 20, 2024)} (Expected: False - ESE 20 < 24)")
+# is_pass(internal, external, max_internal, max_external, scheme)
+print(f"Micro: Int 40, Ext 15 -> {is_pass(40, 15, 60, 40, 2024)} (Expected: False - ESE min 16)")
+print(f"Micro: Int 40, Ext 16 -> {is_pass(40, 16, 60, 40, 2024)} (Expected: True - Total 56, ESE 16)")
+print(f"Life: Int 40, Ext 0 -> {is_pass(40, 0, 100, 0, 2024)} (Expected: False - Total 40)")
+print(f"Life: Int 50, Ext 0 -> {is_pass(50, 0, 100, 0, 2024)} (Expected: True - Total 50)")
+
+print("\n--- 2019 Scheme Consistency ---")
+# 2019 Theory (50/100)
+# Pass: Total 75, ESE 40
+print(f"2019 Theory: Int 30, Target 75: {required_external_for_total(30, 75, 100, scheme=2019)} (Expected: 45)")
+print(f"2019 Theory: Int 40, Target 75: {required_external_for_total(40, 75, 100, scheme=2019)} (Expected: 40 - ESE min 40)")

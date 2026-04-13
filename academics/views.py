@@ -101,28 +101,29 @@ def result_view(request):
 
             pass_total = get_pass_mark_total(scheme)
 
+            max_internal = sub.get("max_internal", 50)
+            max_external = sub.get("max_external", 100)
+
             required = required_external_for_total(
                 internal,
                 pass_total,
-                sub.get("lab", False),
+                max_external,
                 scheme
             )
-
-            if scheme == 2024:
-                if required != "Not Possible":
-                    required = max(24, required)
 
             sub_data = {
                 "code": sub["code"],
                 "name": sub["name"],
                 "credits": sub["credits"],
                 "internal": internal,
+                "max_internal": max_internal,
+                "max_external": max_external,
                 "pass_required": required,
                 "can_pass": required != "Not Possible",
 
                 "grade_requirements": get_required_externals_by_grade(
                     internal,
-                    sub.get("lab", False),
+                    max_external,
                     scheme
                 )
             }

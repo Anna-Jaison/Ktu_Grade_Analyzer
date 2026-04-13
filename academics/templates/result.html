@@ -205,12 +205,12 @@
             <div class="metrics-row">
                 <div class="metric">
                     <span class="metric-label">Internals</span>
-                    <span class="metric-value">{{ sub.internal }}</span>
+                    <span class="metric-value">{{ sub.internal }}<span style="font-size: 0.8rem; color: var(--text-dim); font-weight: 500;">/{{ sub.max_internal }}</span></span>
                 </div>
                 <div class="metric">
                     <span class="metric-label">Pass Mark</span>
                     <span class="metric-value {% if not sub.can_pass %}text-impossible{% else %}text-possible{% endif %}">
-                        {% if not sub.can_pass %}Not Possible{% else %}{{ sub.pass_required }}{% endif %}
+                        {% if not sub.can_pass %}Not Possible{% else %}{{ sub.pass_required }}<span style="font-size: 0.8rem; color: var(--text-dim); font-weight: 500;">/{{ sub.max_external }}</span>{% endif %}
                     </span>
                 </div>
                 <div class="metric">

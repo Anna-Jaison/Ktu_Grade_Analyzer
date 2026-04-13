@@ -179,10 +179,10 @@
                         placeholder="0"
                         class="mark-input"
                         min="0"
-                        max="{% if sub.lab %}75{% else %}50{% endif %}"
+                        max="{{ sub.max_internal }}"
                         required
                     >
-                    <span style="font-size: 0.75rem; font-weight: 600; color: var(--text-dim);">/{% if sub.lab %}75{% else %}50{% endif %}</span>
+                    <span style="font-size: 0.75rem; font-weight: 600; color: var(--text-dim);">/{{ sub.max_internal }}</span>
                 </div>
 
        

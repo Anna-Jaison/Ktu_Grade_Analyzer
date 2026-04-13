@@ -36,6 +36,8 @@ def get_pass_mark_total(scheme):
 
 def get_mark_limits(is_lab=False, scheme=2019):
     if scheme == 2024:
+        if is_lab:
+            return {"max_internal": 50, "max_external": 50}
         return {"max_internal": 40, "max_external": 60}
 
     if is_lab:
@@ -44,30 +46,28 @@ def get_mark_limits(is_lab=False, scheme=2019):
     return {"max_internal": 50, "max_external": 100}
 
 
-def required_external_for_total(internal, target_total, is_lab=False, scheme=2019):
-    limits = get_mark_limits(is_lab, scheme)
-
+def required_external_for_total(internal, target_total, max_external, scheme=2019):
     required = target_total - internal
 
     # Minimum ESE threshold (40%)
-    ese_min = 24 if scheme == 2024 else round(limits["max_external"] * 0.40, 2)
+    ese_min = round(max_external * 0.40, 2)
 
     if required <= 0:
         return ese_min
         
-    if required > limits["max_external"]:
+    if required > max_external:
         return "Not Possible"
 
     return max(ese_min, round(required, 2))
 
 
-def get_required_externals_by_grade(internal, is_lab=False, scheme=2019):
+def get_required_externals_by_grade(internal, max_external, scheme=2019):
     result = {}
     grade_map = get_grade_map(scheme)
 
     for grade, (min_total, _) in grade_map.items():
         required = required_external_for_total(
-            internal, min_total, is_lab, scheme
+            internal, min_total, max_external, scheme
         )
         result[grade] = required
 
@@ -87,16 +87,15 @@ def get_grade_point(grade, scheme=2019):
     grade_map = get_grade_map(scheme)
     return grade_map.get(grade, (0, 0))[1]
 
-def is_pass(internal, external, scheme=2019):
+def is_pass(internal, external, max_internal, max_external, scheme=2019):
     total = internal + external
+    ese_min = round(max_external * 0.40, 2)
 
     if scheme == 2024:
-        return external >= 24 and total >= 50
+        return external >= ese_min and total >= 50
 
     # 2019 logic: ESE min 40%, Total min 50%
-    # Detect if lab based on common mark ranges
-    is_lab = external <= 75 and internal > 50
-    limits = get_mark_limits(is_lab, scheme)
-    ese_min = round(limits["max_external"] * 0.40, 2)
+    # Pass threshold is 50% of (max_internal + max_external), but for 150 marks it's often set to 75.
+    pass_total = (max_internal + max_external) * 0.5
     
-    return external >= ese_min and total >= 75
+    return external >= ese_min and total >= pass_total
