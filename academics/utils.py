@@ -1,118 +1,102 @@
-# Grade → (minimum total out of 150, grade point)
+# Grade maps
+# 2019 Scheme: Passing Total 75/150 (50%)
 GRADE_MAP = {
-    "S": (135, 10),
-    "A+": (128, 9),
-    "A": (120, 8.5),
-    "B+": (113, 8),
-    "B": (105, 7.5),
-    "C+": (98, 7),
-    "C": (90, 6.5),
-    "D": (83, 6),
+    "S": (128, 10),
+    "A+": (120, 9),
+    "A": (113, 8.5),
+    "B+": (105, 8),
+    "B": (98, 7.5),
+    "C+": (90, 7),
+    "C": (83, 6.5),
+    "D": (79, 6),
     "P": (75, 5.5),
 }
 
-PASS_MARK_TOTAL = 75  # out of 150
+# 2024 Scheme: Passing Total 50/100 (50%)
+GRADE_MAP_2024 = {
+    "S": (90, 10),
+    "A+": (85, 9),
+    "A": (80, 8.5),
+    "B+": (75, 8),
+    "B": (70, 7.5),
+    "C+": (65, 7),
+    "C": (60, 6.5),
+    "D": (55, 6),
+    "P": (50, 5.5),
+}
 
 
-def get_mark_limits(is_lab=False):
+def get_grade_map(scheme):
+    return GRADE_MAP_2024 if scheme == 2024 else GRADE_MAP
+
+
+def get_pass_mark_total(scheme):
+    return 50 if scheme == 2024 else 75
+
+
+def get_mark_limits(is_lab=False, scheme=2019):
+    if scheme == 2024:
+        return {"max_internal": 40, "max_external": 60}
+
     if is_lab:
-        return {
-            "max_internal": 75,
-            "max_external": 75,
-        }
-    return {
-        "max_internal": 50,
-        "max_external": 100,
-    }
+        return {"max_internal": 75, "max_external": 75}
+
+    return {"max_internal": 50, "max_external": 100}
 
 
-def required_external_for_total(internal, target_total, is_lab=False):
-    limits = get_mark_limits(is_lab)
+def required_external_for_total(internal, target_total, is_lab=False, scheme=2019):
+    limits = get_mark_limits(is_lab, scheme)
 
     required = target_total - internal
 
+    # Minimum ESE threshold (40%)
+    ese_min = 24 if scheme == 2024 else round(limits["max_external"] * 0.40, 2)
+
     if required <= 0:
-        return 0
+        return ese_min
+        
     if required > limits["max_external"]:
         return "Not Possible"
 
-    return round(required, 2)
+    return max(ese_min, round(required, 2))
 
 
-def get_required_externals_by_grade(internal, is_lab=False):
+def get_required_externals_by_grade(internal, is_lab=False, scheme=2019):
     result = {}
-    for grade, (min_total, _) in GRADE_MAP.items():
-        result[grade] = required_external_for_total(
-            internal, min_total, is_lab
+    grade_map = get_grade_map(scheme)
+
+    for grade, (min_total, _) in grade_map.items():
+        required = required_external_for_total(
+            internal, min_total, is_lab, scheme
         )
+        result[grade] = required
+
     return result
 
 
-def get_grade(total):
-    for grade, (min_mark, _) in GRADE_MAP.items():
+def get_grade(total, scheme=2019):
+    grade_map = get_grade_map(scheme)
+
+    for grade, (min_mark, _) in grade_map.items():
         if total >= min_mark:
             return grade
     return "F"
 
 
-def get_grade_point(grade):
-    return GRADE_MAP.get(grade, (0, 0))[1]
+def get_grade_point(grade, scheme=2019):
+    grade_map = get_grade_map(scheme)
+    return grade_map.get(grade, (0, 0))[1]
 
+def is_pass(internal, external, scheme=2019):
+    total = internal + external
 
-def calculate_sgpa(subjects):
-    total_points = 0
-    total_credits = 0
+    if scheme == 2024:
+        return external >= 24 and total >= 50
 
-    for sub in subjects:
-        gp = sub.get("grade_point", 0)
-        credits = float(sub.get("credits", 0))
-
-        total_points += gp * credits
-        total_credits += credits
-
-    if total_credits == 0:
-        return 0
-
-    return round(total_points / total_credits, 2)
-
-
-def check_honours_eligibility(sgpa):
-    return sgpa >= 8.5
-
-
-def calculate_sgpa_requirements(subjects_data, target_sgpa):
-    """
-    Calculate what external marks are needed per subject to achieve target SGPA.
-    Returns a dict with each subject's requirements.
-    """
-    results = []
-    total_credits = sum(sub["credits"] for sub in subjects_data)
+    # 2019 logic: ESE min 40%, Total min 50%
+    # Detect if lab based on common mark ranges
+    is_lab = external <= 75 and internal > 50
+    limits = get_mark_limits(is_lab, scheme)
+    ese_min = round(limits["max_external"] * 0.40, 2)
     
-    # Calculate total grade points needed to achieve target SGPA
-    total_points_needed = target_sgpa * total_credits
-    
-    for sub in subjects_data:
-        sub_credits = sub["credits"]
-        internal = sub["internal"]
-        is_lab = sub["is_lab"]
-        
-        # For this SGPA target, what grade would this subject need?
-        best_grade_points = 10  # Maximum grade point is 10 for 'S'
-        
-        # Calculate minimum external needed to achieve best grade
-        min_external_for_s = required_external_for_total(
-            internal, 135, is_lab  # 'S' grade needs 135+ total
-        )
-        
-        results.append({
-            "code": sub["code"],
-            "name": sub["name"],
-            "credits": sub_credits,
-            "external_for_s": min_external_for_s
-        })
-    
-    return {
-        "required_grade_points": total_points_needed,
-        "total_credits": total_credits,
-        "subjects": results
-    }
+    return external >= ese_min and total >= 75

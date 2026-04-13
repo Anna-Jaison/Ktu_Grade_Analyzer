@@ -134,16 +134,17 @@
 </style>
 
 <div class="container animate-fade-in" style="position: relative;">
-    <!-- Page-specific SVG Decorative Dotted Lines -->
+    <!-- Page-specific SVG Decorative Dotted Lines: Sync of Dotted Lines -->
     <svg class="bg-dots" viewBox="0 0 1000 1000" xmlns="http://www.w3.org/2000/svg">
-        <path d="M-100,100 Q400,300 1100,50" fill="none" stroke="var(--primary)" stroke-width="1.5" stroke-dasharray="10 15" />
-        <circle cx="50" cy="400" r="100" fill="none" stroke="var(--secondary)" stroke-width="1" stroke-dasharray="5 5" />
-        <path d="M800,800 Q1000,900 1200,800" fill="none" stroke="var(--primary)" stroke-width="1" stroke-dasharray="4 8" />
+        <path d="M-100,200 Q400,0 1100,300" fill="none" stroke="var(--primary)" stroke-width="1.2" stroke-dasharray="8 12" opacity="0.6" />
+        <path d="M-100,800 Q300,1000 1100,700" fill="none" stroke="var(--secondary)" stroke-width="1.2" stroke-dasharray="6 10" opacity="0.5" />
+        <circle cx="900" cy="100" r="150" fill="none" stroke="var(--primary)" stroke-width="1" stroke-dasharray="10 10" opacity="0.3" />
+        <path d="M0,0 L1000,1000" fill="none" stroke="var(--primary)" stroke-width="0.5" stroke-dasharray="5 15" opacity="0.1" />
     </svg>
 
     <div class="page-header">
-        <h1 class="page-title">Internal <span class="text-gradient">Metrics</span></h1>
-        <p class="page-subtitle">Configure your current assessment data for precise results.</p>
+        <h1 class="page-title">Enter <span class="text-gradient">Internal Marks</span></h1>
+        <p class="page-subtitle">Enter your marks for each subject.</p>
         
         <div class="selection-info">
             <span class="info-chip">{{ selected_department }}</span>
@@ -160,18 +161,18 @@
         <input type="hidden" name="scheme" value="{{ selected_scheme }}">
 
         <div class="subject-grid">
-            {% for sub in subjects %}
-            <div class="subject-card">
-                <div>
-                    <span class="sub-code">{{ sub.code }}</span>
-                    <h3 class="sub-name">{{ sub.name }}</h3>
-                    <div style="font-size: 0.75rem; color: var(--text-dim);">
-                        {% if sub.lab %}Laboratory Exploration{% else %}Theoretical Study{% endif %}
-                    </div>
-                </div>
-                
+    {% for sub in subjects %}
+    <div class="subject-card">
+        <div>
+            <span class="sub-code">{{ sub.code }}</span>
+            <h3 class="sub-name">{{ sub.name }}</h3>
+            <div style="font-size: 0.75rem; color: var(--text-dim);">
+                {% if sub.lab %}Lab{% else %}Theory{% endif %}
+            </div>
+        </div>
+
                 <div class="mark-input-wrapper">
-                    <label>Internal Score</label>
+                    <label>Internal Marks</label>
                     <input 
                         type="number" 
                         name="internal_{{ sub.code }}" 
@@ -183,18 +184,18 @@
                     >
                     <span style="font-size: 0.75rem; font-weight: 600; color: var(--text-dim);">/{% if sub.lab %}75{% else %}50{% endif %}</span>
                 </div>
-            </div>
-            {% endfor %}
-        </div>
 
-        <div class="bottom-bar">
-            <button type="submit" class="btn-primary" style="min-width: 300px;">
-                Proceed to Analysis
-                <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M12.5 5L17.5 10M17.5 10L12.5 15M17.5 10H2.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                </svg>
-            </button>
-        </div>
+       
+    </div>
+    {% endfor %}
+</div>
+
+<!-- ✅ MOVE BUTTON OUTSIDE LOOP -->
+<div class="bottom-bar">
+    <button type="submit" class="btn-primary" style="min-width: 300px;">
+        See analysis results
+    </button>
+</div>
     </form>
     {% else %}
     <div class="card" style="text-align: center; padding: 4rem;">

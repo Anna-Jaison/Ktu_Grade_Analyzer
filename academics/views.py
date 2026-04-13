@@ -80,31 +80,50 @@ def result_view(request):
     if request.method == "POST":
         department = request.POST.get("department")
         semester = request.POST.get("semester")
-        scheme = request.POST.get("scheme")
+        scheme = int(request.POST.get("scheme"))
 
         file_path = os.path.join(os.path.dirname(__file__), "../subjects.json")
 
         with open(file_path, "r") as f:
             data = json.load(f)
 
-        subjects = [s for s in data if s.get('dept') == department and str(s.get('sem')) == semester and s.get('scheme', 2019) == int(scheme)]
+        subjects = [
+            s for s in data
+            if s.get('dept') == department
+            and str(s.get('sem')) == semester
+            and s.get('scheme', 2019) == scheme
+        ]
 
         subjects_data = []
 
         for sub in subjects:
             internal = float(request.POST.get(f"internal_{sub['code']}", 0) or 0)
 
+            pass_total = get_pass_mark_total(scheme)
+
+            required = required_external_for_total(
+                internal,
+                pass_total,
+                sub.get("lab", False),
+                scheme
+            )
+
+            if scheme == 2024:
+                if required != "Not Possible":
+                    required = max(24, required)
+
             sub_data = {
                 "code": sub["code"],
                 "name": sub["name"],
                 "credits": sub["credits"],
-                "is_lab": sub.get("lab", False),
                 "internal": internal,
-                "pass_required": required_external_for_total(
-                    internal, PASS_MARK_TOTAL, sub.get("lab", False)
-                ),
+                "pass_required": required,
+                "can_pass": required != "Not Possible",
+
                 "grade_requirements": get_required_externals_by_grade(
-                    internal, sub.get("lab", False)
+                    internal,
+                    sub.get("lab", False),
+                    scheme
                 )
             }
 

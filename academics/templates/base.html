@@ -11,21 +11,22 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Lexend+Deca:wght@400;600;700;800&display=swap" rel="stylesheet">
     <style>
         :root {
-            --bg: #F9FAFB;
+            --bg: #F8FAFC;
             --surface: #FFFFFF;
             --primary: #4F46E5;
             --primary-light: #EEF2FF;
             --secondary: #3B82F6;
             --secondary-light: #EFF6FF;
             --accent: #10B981;
-            --text-main: #111827;
-            --text-dim: #6B7280;
-            --border-thin: rgba(31, 41, 55, 0.08);
-            --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
-            --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
-            --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
-            --radius-lg: 24px;
-            --radius-md: 12px;
+            --text-main: #0F172A;
+            --text-dim: #64748B;
+            --border-thin: rgba(15, 23, 42, 0.08);
+            --shadow-sm: 0 1px 3px 0 rgba(0, 0, 0, 0.05);
+            --shadow-md: 0 4px 12px -2px rgba(15, 23, 42, 0.08);
+            --shadow-lg: 0 20px 25px -5px rgba(15, 23, 42, 0.1), 0 8px 10px -6px rgba(15, 23, 42, 0.05);
+            --radius-lg: 32px;
+            --radius-md: 16px;
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
         * {
@@ -56,7 +57,7 @@
             height: 100%;
             pointer-events: none;
             z-index: -1;
-            opacity: 0.5;
+            opacity: 0.6;
         }
 
         h1, h2, h3, h4, .heading-font {
@@ -159,13 +160,18 @@
 </head>
 <body>
 
-    <!-- Global Background Decorations -->
+    <!-- Global Background Decorations: Sync of Dotted Lines -->
     <svg class="bg-decor" viewBox="0 0 1200 800" xmlns="http://www.w3.org/2000/svg">
-        <path d="M-100,200 Q200,50 500,200 T1100,100" fill="none" stroke="var(--primary)" stroke-width="1" stroke-dasharray="6 10" opacity="0.3" />
-        <path d="M1300,600 Q900,800 600,600 T-100,700" fill="none" stroke="var(--secondary)" stroke-width="1" stroke-dasharray="4 8" opacity="0.2" />
-        <path d="M-100,400 C200,600 800,200 1300,400" fill="none" stroke="var(--primary)" stroke-width="0.5" stroke-dasharray="2 6" opacity="0.1" />
-        <circle cx="1000" cy="150" r="100" fill="none" stroke="var(--primary)" stroke-width="0.5" stroke-dasharray="10 5" opacity="0.1" />
-        <circle cx="100" cy="700" r="150" fill="none" stroke="var(--secondary)" stroke-width="0.5" stroke-dasharray="5 10" opacity="0.1" />
+        <!-- Floating Dotted Curves -->
+        <path d="M-100,200 Q200,50 600,300 T1300,100" fill="none" stroke="var(--primary)" stroke-width="1.2" stroke-dasharray="8 12" opacity="0.3" />
+        <path d="M1300,600 Q900,800 500,500 T-100,700" fill="none" stroke="var(--secondary)" stroke-width="1.2" stroke-dasharray="6 10" opacity="0.25" />
+        <path d="M-50,0 Q300,400 0,800" fill="none" stroke="var(--primary)" stroke-width="1" stroke-dasharray="10 15" opacity="0.15" />
+        
+        <!-- Symmetrical Decorative Circles -->
+        <circle cx="1100" cy="100" r="120" fill="none" stroke="var(--primary)" stroke-width="1" stroke-dasharray="10 10" opacity="0.15" />
+        <circle cx="100" cy="750" r="180" fill="none" stroke="var(--secondary)" stroke-width="1.2" stroke-dasharray="15 15" opacity="0.15" />
+        <circle cx="600" cy="400" r="300" fill="none" stroke="var(--primary)" stroke-width="0.5" stroke-dasharray="20 40" opacity="0.1" />
+        <circle cx="1200" cy="800" r="200" fill="none" stroke="var(--secondary)" stroke-width="1" stroke-dasharray="5 10" opacity="0.1" />
     </svg>
 
     {% block content %}
