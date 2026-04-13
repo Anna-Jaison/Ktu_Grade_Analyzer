@@ -2060,7 +2060,7 @@
         "lab": false,
         "dept": "CSE",
         "scheme": 2024,
-        "max_internal":40,"external":60
+        "max_internal":40,"max_external":60
     },
     {
         "sem": 1,
@@ -2071,7 +2071,7 @@
         "lab": true,
         "dept": "CSE",
         "scheme": 2024,
-        "max_internal":40,"external":60
+        "max_internal":40,"max_external":60
     },
     {
         "sem": 1,
@@ -2082,7 +2082,7 @@
         "lab": true,
         "dept": "CSE",
         "scheme": 2024,
-        "max_internal":40,"external":60
+        "max_internal":40,"max_external":60
     },
     {
         "sem": 1,
@@ -2093,7 +2093,7 @@
         "lab": true,
         "dept": "CSE",
         "scheme": 2024,
-        "max_internal":40,"external":60
+        "max_internal":40,"max_external":60
     },
     {
         "sem": 1,
@@ -2104,7 +2104,7 @@
         "lab": false,
         "dept": "CSE",
         "scheme": 2024,
-        "max_internal":40,"external":60
+        "max_internal":40,"max_external":60
     },
     {
         "sem": 1,
@@ -2115,7 +2115,7 @@
         "lab": true,
         "dept": "CSE",
         "scheme": 2024,
-        "max_internal":40,"external":60
+        "max_internal":40,"max_external":60
     },
     {
         "sem": 1,
@@ -2126,7 +2126,7 @@
         "lab": true,
         "dept": "CSE",
         "scheme": 2024,
-        "max_internal":50,"external":50
+        "max_internal":50,"max_external":50
     },
     {
         "sem": 1,
@@ -2137,7 +2137,7 @@
         "lab": true,
         "dept": "CSE",
         "scheme": 2024,
-        "max_internal":50,"external":0
+        "max_internal":50,"max_external":0
     },
     {
         "sem": 1,
@@ -2148,7 +2148,7 @@
         "lab": false,
         "dept": "CSE",
         "scheme": 2024,
-        "max_internal":0,"external":0
+        "max_internal":0,"max_external":0
     },
     {
         "sem": 1,
@@ -2159,7 +2159,7 @@
         "lab": false,
         "dept": "CSE",
         "scheme": 2024,
-        "max_internal":0,"external":0
+        "max_internal":0,"max_external":0
     },
     {
         "sem": 2,
@@ -2170,7 +2170,7 @@
         "lab": false,
         "dept": "CSE",
         "scheme": 2024,
-        "max_internal":40,"external":60
+        "max_internal":40,"max_external":60
     },
     {
         "sem": 2,
@@ -2181,7 +2181,7 @@
         "lab": true,
         "dept": "CSE",
         "scheme": 2024,
-        "max_internal":40,"external":60
+        "max_internal":40,"max_external":60
     },
     {
         "sem": 2,
@@ -2192,7 +2192,7 @@
         "lab": true,
         "dept": "CSE",
         "scheme": 2024,
-        "max_internal":40,"external":60
+        "max_internal":40,"max_external":60
     },
     {
         "sem": 2,
@@ -2203,7 +2203,7 @@
         "lab": false,
         "dept": "CSE",
         "scheme": 2024,
-        "max_internal":40,"external":60
+        "max_internal":40,"max_external":60
     },
     {
         "sem": 2,
@@ -2214,7 +2214,7 @@
         "lab": true,
         "dept": "CSE",
         "scheme": 2024,
-        "max_internal":40,"external":60
+        "max_internal":40,"max_external":60
     },
     {
         "sem": 2,
@@ -2225,7 +2225,7 @@
         "lab": false,
         "dept": "CSE",
         "scheme": 2024,
-        "max_internal":40,"external":60
+        "max_internal":40,"max_external":60
     },
     {
         "sem": 2,
@@ -2236,7 +2236,7 @@
         "lab": false,
         "dept": "CSE",
         "scheme": 2024,
-        "max_internal":60,"external":40
+        "max_internal":60,"max_external":40
     },
     {
         "sem": 2,
@@ -2247,7 +2247,7 @@
         "lab": true,
         "dept": "CSE",
         "scheme": 2024,
-        "max_internal":50,"external":0
+        "max_internal":50,"max_external":0
     },
     {
         "sem": 2,
@@ -2258,7 +2258,7 @@
         "lab": false,
         "dept": "CSE",
         "scheme": 2024,
-        "max_internal":100,"external":0
+        "max_internal":100,"max_external":0
     },
     {
         "sem": 2,
@@ -2269,7 +2269,7 @@
         "lab": true,
         "dept": "CSE",
         "scheme": 2024,
-        "max_internal":50,"external":50
+        "max_internal":50,"max_external":50
     },
     {
         "sem": 2,
@@ -2280,7 +2280,7 @@
         "lab": false,
         "dept": "CSE",
         "scheme": 2024,
-        "max_internal":0,"external":0
+        "max_internal":0,"max_external":0
     },
     {
         "sem": 3,
@@ -2291,7 +2291,7 @@
         "lab": false,
         "dept": "CSE",
         "scheme": 2024,
-        "max_internal":40,"external":60
+        "max_internal":40,"max_external":60
     },
     {
         "sem": 3,
@@ -2302,7 +2302,7 @@
         "lab": false,
         "dept": "CSE",
         "scheme": 2024,
-        "max_internal":40,"external":60
+        "max_internal":40,"max_external":60
     },
     {
         "sem": 3,
@@ -2313,7 +2313,7 @@
         "lab": false,
         "dept": "CSE",
         "scheme": 2024,
-        "max_internal":40,"external":60
+        "max_internal":40,"max_external":60
     },
     {
         "sem": 3,
@@ -2324,7 +2324,7 @@
         "lab": false,
         "dept": "CSE",
         "scheme": 2024,
-        "max_internal":60,"external":40
+        "max_internal":60,"max_external":40
     },
     {
         "sem": 3,
@@ -2335,7 +2335,7 @@
         "lab": false,
         "dept": "CSE",
         "scheme": 2024,
-        "max_internal":40,"external":60
+        "max_internal":40,"max_external":60
     },
     {
         "sem": 3,
@@ -2346,7 +2346,7 @@
         "lab": false,
         "dept": "CSE",
         "scheme": 2024,
-        "max_internal":50,"external":50
+        "max_internal":50,"max_external":50
     },
     {
         "sem": 3,
@@ -2357,7 +2357,7 @@
         "lab": false,
         "dept": "CSE",
         "scheme": 2024,
-        "max_internal":50,"external":50
+        "max_internal":50,"max_external":50
     },
       {
         "sem":3,
@@ -2365,7 +2365,7 @@
         "name":"Data Structures Lab",
         "credits":2,"lab":true,
         "max_internal":50,
-        "external":50,
+        "max_external":50,
         "dept": "CSE",
         "scheme": 2024
     },
@@ -2373,7 +2373,7 @@
         "code":"PCCSL308",
         "name":"Digital Lab",
         "credits":2,"lab":true,
-        "max_internal":50,"external":50,
+        "max_internal":50,"max_external":50,
         "dept": "CSE",
         "scheme": 2024
     },
@@ -2414,7 +2414,7 @@
         "lab": false,
         "dept": "CSE",
         "scheme": 2024,
-        "max_internal":40,"external":60
+        "max_internal":40,"max_external":60
         
     },
     {
@@ -2426,7 +2426,7 @@
         "lab": false,
         "dept": "CSE",
         "scheme": 2024,
-        "max_internal":40,"external":60
+        "max_internal":40,"max_external":60
     },
     {
         "sem": 4,
@@ -2437,7 +2437,7 @@
         "lab": false,
         "dept": "CSE",
         "scheme": 2024,
-        "max_internal":40,"external":60
+        "max_internal":40,"max_external":60
     },
     {
         "sem": 4,
@@ -2448,7 +2448,7 @@
         "lab": false,
         "dept": "CSE",
         "scheme": 2024,
-        "max_internal":60,"external":40
+        "max_internal":60,"max_external":40
     },
     {
         "sem": 4,
@@ -2459,7 +2459,7 @@
         "lab": false,
         "dept": "CSE",
         "scheme": 2024,
-        "max_internal":40,"external":60
+        "max_internal":40,"max_external":60
     },
     {
         "sem": 4,
@@ -2470,7 +2470,7 @@
         "lab": false,
         "dept": "CSE",
         "scheme": 2024,
-        "max_internal":50,"external":50
+        "max_internal":50,"max_external":50
     },
     {
         "sem": 4,
@@ -2481,7 +2481,7 @@
         "lab": false,
         "dept": "CSE",
         "scheme": 2024,
-        "max_internal":50,"external":50
+        "max_internal":50,"max_external":50
     },
     {
         "sem": 4,
@@ -2492,7 +2492,7 @@
         "lab": true,
         "dept": "CSE",
         "scheme": 2024,
-        "max_internal":50,"external":50
+        "max_internal":50,"max_external":50
     },
     {
         "sem": 4,
@@ -2503,7 +2503,7 @@
         "lab": true,
         "dept": "CSE",
         "scheme": 2024,
-        "max_internal":50,"external":50
+        "max_internal":50,"max_external":50
     },
 
     {
@@ -2515,7 +2515,7 @@
         "lab": false,
         "dept": "CSE",
         "scheme": 2024,
-        "max_internal":40,"external":60
+        "max_internal":40,"max_external":60
     },
     {
         "sem": 5,
@@ -2526,7 +2526,7 @@
         "lab": false,
         "dept": "CSE",
         "scheme": 2024,
-        "max_internal":40,"external":60
+        "max_internal":40,"max_external":60
     },
     {
         "sem": 5,
@@ -2537,7 +2537,7 @@
         "lab": false,
         "dept": "CSE",
         "scheme": 2024,
-        "max_internal":40,"external":60
+        "max_internal":40,"max_external":60
     },
     {
         "sem": 5,
@@ -2548,7 +2548,7 @@
         "lab": false,
         "dept": "CSE",
         "scheme": 2024,
-        "max_internal":60,"external":40
+        "max_internal":60,"max_external":40
 
     },
     {
@@ -2560,7 +2560,7 @@
         "lab": false,
         "dept": "CSE",
         "scheme": 2024,
-        "max_internal":40,"external":60
+        "max_internal":40,"max_external":60
 
     },
     {
@@ -2583,7 +2583,7 @@
         "lab": true,
         "dept": "CSE",
         "scheme": 2024,
-        "max_internal":50,"external":50
+        "max_internal":50,"max_external":50
     },
     {
         "sem": 5,
@@ -2594,7 +2594,7 @@
         "lab": true,
         "dept": "CSE",
         "scheme": 2024,
-        "max_internal":50,"external":50
+        "max_internal":50,"max_external":50
     },
 
     {
@@ -2606,7 +2606,7 @@
         "lab": false,
         "dept": "CSE",
         "scheme": 2024,
-        "max_internal":40,"external":60
+        "max_internal":40,"max_external":60
     },
     {
         "sem": 6,
@@ -2617,7 +2617,7 @@
         "lab": false,
         "dept": "CSE",
         "scheme": 2024,
-        "max_internal":40,"external":60
+        "max_internal":40,"max_external":60
     },
     {
         "sem": 6,
@@ -2628,7 +2628,7 @@
         "lab": false,
         "dept": "CSE",
         "scheme": 2024,
-        "max_internal":40,"external":60
+        "max_internal":40,"max_external":60
     },
     {
         "sem": 6,
@@ -2639,7 +2639,7 @@
         "lab": false,
         "dept": "CSE",
         "scheme": 2024,
-        "max_internal":60,"external":40
+        "max_internal":60,"max_external":40
     },
     {
         "sem": 6,
@@ -2650,7 +2650,7 @@
         "lab": false,
         "dept": "CSE",
         "scheme": 2024,
-        "max_internal":40,"external":60
+        "max_internal":40,"max_external":60
     },
     {
         "sem": 6,
@@ -2661,7 +2661,7 @@
         "lab": false,
         "dept": "CSE",
         "scheme": 2024,
-        "max_internal":40,"external":60
+        "max_internal":40,"max_external":60
 
     },
     {
@@ -2673,7 +2673,7 @@
         "lab": true,
         "dept": "CSE",
         "scheme": 2024,
-        "max_internal":50,"external":50
+        "max_internal":50,"max_external":50
     },
     {
         "sem": 6,
@@ -2684,7 +2684,7 @@
         "lab": true,
         "dept": "CSE",
         "scheme": 2024,
-        "max_internal":50,"external":50
+        "max_internal":50,"max_external":50
     },
     
     {
@@ -2696,7 +2696,7 @@
         "lab": false,
         "dept": "CSE",
         "scheme": 2024,
-        "max_internal":40,"external":60
+        "max_internal":40,"max_external":60
     },
     {
         "sem": 7,
@@ -2707,7 +2707,7 @@
         "lab": false,
         "dept": "CSE",
         "scheme": 2024,
-        "max_internal":40,"external":60
+        "max_internal":40,"max_external":60
     },
     {
         "sem": 7,
@@ -2718,7 +2718,7 @@
         "lab": false,
         "dept": "CSE",
         "scheme": 2024,
-        "max_internal":40,"external":60
+        "max_internal":40,"max_external":60
     },
     {
         "sem": 7,
@@ -2729,7 +2729,7 @@
         "lab": false,
         "dept": "CSE",
         "scheme": 2024,
-        "max_internal":50,"external":50
+        "max_internal":50,"max_external":50
     },
     {
         "sem": 7,
@@ -2740,7 +2740,7 @@
         "lab": true,
         "dept": "CSE",
         "scheme": 2024,
-        "max_internal":50,"external":0
+        "max_internal":50,"max_external":0
     },
     {
         "sem": 7,
@@ -2751,7 +2751,7 @@
         "lab": true,
         "dept": "CSE",
         "scheme": 2024,
-        "max_internal":100,"external":0
+        "max_internal":100,"max_external":0
     },
     {
         "sem": 8,
@@ -2762,7 +2762,7 @@
         "lab": false,
         "dept": "CSE",
         "scheme": 2024,
-        "max_internal":40,"external":60
+        "max_internal":40,"max_external":60
     },
     {
         "sem": 8,
@@ -2773,7 +2773,7 @@
         "lab": false,
         "dept": "CSE",
         "scheme": 2024,
-        "max_internal":40,"external":60
+        "max_internal":40,"max_external":60
     },
     {
         "sem": 8,
@@ -2784,7 +2784,7 @@
         "lab": false,
         "dept": "CSE",
         "scheme": 2024,
-        "max_internal":50,"external":50
+        "max_internal":50,"max_external":50
     },
     {
         "sem": 8,
@@ -2795,7 +2795,7 @@
         "lab": true,
         "dept": "CSE",
         "scheme": 2024,
-        "max_internal":100,"external":0
+        "max_internal":100,"max_external":0
     }
 
 ]

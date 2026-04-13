@@ -195,9 +195,9 @@
                 </div>
                 <div class="pass-status {% if not sub.can_pass %}status-impossible{% else %}status-possible{% endif %}">
                     {% if not sub.can_pass %}
-                        Result: Cannot pass
+                        Result: Cannot reach minimum total
                     {% else %}
-                        Result: Pass is possible
+                        Minimum external required: {{ sub.pass_required }}
                     {% endif %}
                 </div>
             </div>

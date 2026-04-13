@@ -101,8 +101,10 @@ def result_view(request):
 
             pass_total = get_pass_mark_total(scheme)
 
-            max_internal = sub.get("max_internal", 50)
-            max_external = sub.get("max_external", 100)
+            limits = get_mark_limits(sub.get("lab", False), scheme)
+
+            max_internal = limits["max_internal"]
+            max_external = limits["max_external"]
 
             required = required_external_for_total(
                 internal,
@@ -119,7 +121,8 @@ def result_view(request):
                 "max_internal": max_internal,
                 "max_external": max_external,
                 "pass_required": required,
-                "can_pass": required != "Not Possible",
+                "can_pass": required != "Not Possible" and required <= max_external,
+                "ese_min": round(max_external * (0.40 if scheme == 2024 else 0.35), 2),
 
                 "grade_requirements": get_required_externals_by_grade(
                     internal,
